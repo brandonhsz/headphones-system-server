@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/test'),
+    MongooseModule.forRoot('mongodb://localhost:27017/production'),
     DiademasModule,
     UsersModule
   ],

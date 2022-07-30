@@ -6,7 +6,7 @@ export class CreateUserDto implements IUser {
   readonly employeeId: string;
   readonly campaign: string;
   readonly branch: string;
-  readonly status: string;
+  readonly status: boolean;
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly deletedAt: Date;

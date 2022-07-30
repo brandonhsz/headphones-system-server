@@ -6,7 +6,7 @@ export interface IUser {
   employeeId: string;
   campaign: string;
   branch: string;
-  status: string;
+  status: boolean;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

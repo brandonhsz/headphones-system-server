@@ -5,7 +5,12 @@ import { IUser } from "src/interfaces/User.interface";
 
 export type UserDocument = IUser & Document;
 
-@Schema()
+@Schema({
+  timestamps: {
+    createdAt: true,
+    updatedAt: true,
+  }
+})
 export class User {
 
   @Prop()
