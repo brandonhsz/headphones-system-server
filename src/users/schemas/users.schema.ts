@@ -26,7 +26,7 @@ export class User {
   branch: string;
 
   @Prop()
-  status: string;
+  status: boolean;
 
   @Prop()
   createdAt: Date;

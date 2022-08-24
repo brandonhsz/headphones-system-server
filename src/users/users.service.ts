@@ -11,7 +11,21 @@ export class UsersService {
   ) { }
 
   async create(createUserDto: CreateUserDto) {
-    const userCreated = new this.userModel(createUserDto);
+
+    const { name, campaign, branch, headPhone, employeeId, ...userRest } = createUserDto
+    const { serialNumber, ...headRest } = headPhone
+    const dataToCreate = {
+      name: name.toUpperCase(),
+      campaign: campaign.toUpperCase(),
+      employeeId: employeeId.toString(),
+      branch: branch.toUpperCase(),
+      headPhone: {
+        serialNumber: serialNumber.toUpperCase(),
+        ...headRest
+      }
+    }
+
+    const userCreated = new this.userModel(dataToCreate);
     console.log(createUserDto);
     return await userCreated.save();
   }
