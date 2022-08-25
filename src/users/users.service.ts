@@ -18,6 +18,7 @@ export class UsersService {
       name: name.toUpperCase(),
       campaign: campaign.toUpperCase(),
       employeeId: employeeId.toString(),
+      status: true,
       branch: branch.toUpperCase(),
       headPhone: {
         serialNumber: serialNumber.toUpperCase(),
