@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './schemas/users.schema';
+import { UsersCreateMiddleware } from 'src/middlewares/usersPost.middleware';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
@@ -10,4 +11,10 @@ import { UserSchema } from './schemas/users.schema';
   controllers: [UsersController],
   providers: [UsersService]
 })
-export class UsersModule { }
+export class UsersModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(UsersCreateMiddleware)
+      .forRoutes({ path: 'users', method: RequestMethod.POST });
+  }
+}
