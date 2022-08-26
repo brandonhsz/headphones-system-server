@@ -8,6 +8,8 @@ async function bootstrap() {
   app.enableCors();
   app.use(helmet());
   app.use(LoggerMiddleware);
-  await app.listen(process.env.PORT_SERVER || 3001);
+  await app.listen(process.env.PORT_SERVER || 3001, () => {
+    console.log(`Server running on port ${process.env.PORT_SERVER || 3001}`);
+  });
 }
 bootstrap();
