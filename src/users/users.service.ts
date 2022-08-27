@@ -36,15 +36,33 @@ export class UsersService {
     return allUsers;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    const user = await this.userModel.findOne({ _id: id }).exec();
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const { campaign, branch, employeeId, name, status } = updateUserDto
+    const { serialNumber, ...headRest } = updateUserDto.headPhone
+    const userToUpdate = await this.userModel.findOne({ _id: id }).exec();
+    const userUpdated = await this.userModel.updateOne(userToUpdate, {
+      name: name.toUpperCase(),
+      campaign: campaign.toUpperCase(),
+      employeeId: employeeId.toString(),
+      status: status,
+      branch: branch.toUpperCase(),
+      headPhone: {
+        serialNumber: serialNumber.toUpperCase(),
+        ...headRest
+      }
+    })
+    return {
+      message: 'User updated',
+      userUpdated
+    };
   }
 
-  remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }
