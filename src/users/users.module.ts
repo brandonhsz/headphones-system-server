@@ -16,7 +16,7 @@ export class UsersModule {
     consumer
       .apply(UsersCreateMiddleware)
       .forRoutes({ path: 'users', method: RequestMethod.POST })
-      .apply(UsersCreateMiddleware)
-      .forRoutes({ path: 'users/:id', method: RequestMethod.PATCH })
+    // .apply(UsersCreateMiddleware)
+    // .forRoutes({ path: 'users/:id', method: RequestMethod.PATCH })
   }
 }
